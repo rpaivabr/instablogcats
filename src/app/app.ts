@@ -1,5 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+export interface Post {
+  id: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+}
 
 @Component({
   selector: 'app-root',
@@ -7,6 +14,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('instablogcats');
-}
+export class App {}

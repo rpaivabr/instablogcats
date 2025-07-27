@@ -6,6 +6,8 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
+
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -23,6 +25,13 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+app.get('/api/posts', (_req, res) => {
+  const jsonFile = readFileSync(join(import.meta.dirname, '../browser/images/posts.json'), 'utf-8');
+  const posts = JSON.parse(jsonFile);
+  // console.log('First post', posts[0]);
+  res.json(posts);
+});
 
 /**
  * Serve static files from /browser

@@ -1,0 +1,21 @@
+<p>post-list works!</p>
+
+@if (!isLoading()) {
+  <div class="grid grid-cols-3 gap-x-4">
+    @for(post of posts(); track post.id) {
+      <div class="post" [routerLink]="['/posts', post.id]" class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <p class="text-gray-600">{{post.description}}</p>
+        @for (tag of post.tags; track $index) {
+          <span class="inline-block bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded-full mr-2">
+            {{tag}}
+          </span>
+        }
+        <img [src]="post.imageUrl" alt="Post image" class="w-full h-auto rounded-lg shadow-md">
+      </div>
+    } @empty {
+      <p class="text-gray-500">No posts available.</p>
+    }
+  </div>
+} @else {
+  <p>Loading posts...</p>
+}
