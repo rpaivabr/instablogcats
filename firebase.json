@@ -1,19 +1,16 @@
 {
   "hosting": {
-    "source": ".",
+    "public": "dist/instablogcats/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "frameworksBackend": {
-      "region": "us-central1"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "**",
-      "destination": "/index.csr.html"
-    }
-  ]
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }

@@ -1,20 +1,38 @@
-<p>post-list works!</p>
 
 @if (!isLoading()) {
-  <div class="grid grid-cols-3 gap-x-4">
-    @for(post of posts(); track post.id) {
-      <div class="post" [routerLink]="['/posts', post.id]" class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <p class="text-gray-600">{{post.description}}</p>
-        @for (tag of post.tags; track $index) {
-          <span class="inline-block bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded-full mr-2">
-            {{tag}}
-          </span>
-        }
-        <img [src]="post.imageUrl" alt="Post image" class="w-full h-auto rounded-lg shadow-md">
+  <div class="max-w-[800px] w-full mx-auto px-1">
+    <div class="w-full flex justify-around p-3">
+      <div class="flex w-full flex-col items-center">
+        <span class="text-base font-semibold">{{posts()?.length}}</span>
+        <span class="text-base font-normal text-[#737373]">posts</span>
       </div>
-    } @empty {
-      <p class="text-gray-500">No posts available.</p>
-    }
+      <div class="flex w-full flex-col items-center">
+        <span class="text-base font-semibold">0</span>
+        <span class="text-base font-normal text-[#737373]">followers</span>
+      </div>
+      <div class="flex w-full flex-col items-center">
+        <span class="text-base font-semibold">0</span>
+        <span class="text-base font-normal text-[#737373]">following</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-1 w-full">
+      @for(post of posts(); track post.id) {
+        <img [src]="post.imageUrl" alt="Post image" class="w-full h-[180px] object-cover" [routerLink]="['posts', post.id]">
+        <!-- <div class="post cursor-pointer p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <p class="text-gray-600 mb-2">{{post.description}}</p>
+          <div class="mb-2">
+            @for (tag of post.tags; track $index) {
+              <span class="inline-block bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded-full mr-2 mb-1">
+                {{tag}}
+              </span>
+            }
+          </div>
+          <img [src]="post.imageUrl" alt="Post image" class="w-full h-auto rounded-lg shadow-md">
+        </div> -->
+      } @empty {
+        <p class="text-gray-500">No posts available.</p>
+      }
+    </div>
   </div>
 } @else {
   <p>Loading posts...</p>

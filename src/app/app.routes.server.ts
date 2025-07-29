@@ -4,11 +4,11 @@ import { Posts } from './services/posts';
 import { firstValueFrom } from 'rxjs';
 
 export const serverRoutes: ServerRoute[] = [
-  { 
+  {
     path: 'posts/:id',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const service= inject(Posts);
+      const service = inject(Posts);
       console.log('Fetching posts for prerendering');
       const posts = await firstValueFrom(service.getPosts());
       // const posts = await service.getPostsPromise();
@@ -19,12 +19,8 @@ export const serverRoutes: ServerRoute[] = [
       return postIds;
     },
   },
-  // { 
-  //   path: 'home',
-  //   renderMode: RenderMode.Server,
-  // },
   {
     path: '**',
-    renderMode: RenderMode.Client,
+    renderMode: RenderMode.Prerender,
   }
 ];
