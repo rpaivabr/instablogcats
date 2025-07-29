@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { rxResource } from "@angular/core/rxjs-interop";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 
 export interface Post {
   id: string;
@@ -22,7 +22,7 @@ export class Posts {
 
   getPosts(): Observable<Post[]> {
     console.log('Fetching posts from API');
-    return this.http.get<Post[]>('http://localhost:3000/posts');
+    return this.http.get<Post[]>('images/posts.json');
   }
 
   // async getPostsPromise(): Promise<Post[]> {
